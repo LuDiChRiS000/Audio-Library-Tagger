@@ -618,6 +618,7 @@ a:hover { text-decoration: underline; }
     <a href="#requirements"  class="nav-link">Requirements</a>
     <a href="#installation"  class="nav-link">Installation</a>
     <a href="#quickstart"    class="nav-link">Quick Start</a>
+    <a href="#batfiles"      class="nav-link">Batch File Launchers</a>
   </div>
 
   <div class="nav-section">
@@ -791,9 +792,10 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
     </div>
 
     <h3>Step 1 — Scan your library</h3>
+    <p>Double-click <strong>Scan Library.bat</strong> in the <code>audio_tagger</code> folder. It will prompt you to enter your audio folder path:</p>
     <div class="code-block">
-      <div class="code-block-header"><span class="code-lang">PowerShell / Terminal</span></div>
-      <pre>python tagger.py --path "D:\Audio\MySoundLibrary"</pre>
+      <div class="code-block-header"><span class="code-lang">Prompt</span></div>
+      <pre>Audio folder path: V:\Music &amp; Sound for Games</pre>
     </div>
     <p>The tagger walks all subfolders and processes every supported audio file. Progress is shown in the terminal and saved to <code>tagger.log</code>.</p>
 
@@ -803,11 +805,7 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
     </div>
 
     <h3>Step 2 — Start the web app</h3>
-    <div class="code-block">
-      <div class="code-block-header"><span class="code-lang">PowerShell / Terminal</span></div>
-      <pre>python app.py</pre>
-    </div>
-    <p>Open <a href="http://localhost:5000">http://localhost:5000</a> in your browser. The app can run while the tagger is still processing — results appear as files are tagged.</p>
+    <p>Double-click <strong>Start Audio Library Local Server.bat</strong> — this starts the local server automatically. Then either open <a href="http://localhost:5000">http://localhost:5000</a> in your browser, or use the <strong>Open Audio Library</strong> shortcut if you've created one. The app can run while the tagger is still processing — results appear as files are tagged.</p>
 
     <div class="screenshot">
       <div class="screenshot-bar">
@@ -818,6 +816,40 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
         <img src="images/explosion-search.png" alt="Search results for explosion" style="width:100%; display:block;">
       </div>
       <div class="screenshot-caption">Searching for "explosion" returns all matching SFX with PANNs confidence scores shown as tag pills.</div>
+    </div>
+  </div>
+
+  <!-- Bat files -->
+  <div class="section" id="batfiles">
+    <div class="section-header">
+      <span class="section-num">//</span>
+      <h2>Batch File Launchers</h2>
+    </div>
+    <p>Three files are included to make launching the tool as simple as a double-click — no terminal required.</p>
+
+    <table class="tag-table">
+      <thead>
+        <tr><th>File</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tag-cat">Scan Library.bat</td>
+          <td class="tag-desc">Prompts you for your audio folder path, then starts the AI scanner. Resumable — safe to stop and restart any time.</td>
+        </tr>
+        <tr>
+          <td class="tag-cat">Start Audio Library Local Server.bat</td>
+          <td class="tag-desc">Starts the local web server. Keep this running whenever you want to search your library.</td>
+        </tr>
+        <tr>
+          <td class="tag-cat">Open Audio Library shortcut</td>
+          <td class="tag-desc">A browser shortcut pointing to <code>http://localhost:5000</code>. Open this after launching the web server to go straight to search.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-tip">
+      <div class="callout-label">Tip</div>
+      <p>You can run <strong>Scan Library.bat</strong> and <strong>Start Audio Library Local Server.bat</strong> simultaneously in separate windows — search while your library is still being tagged.</p>
     </div>
   </div>
 
@@ -832,6 +864,13 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
     <div class="code-block">
       <div class="code-block-header"><span class="code-lang">PowerShell / Terminal</span></div>
       <pre>python tagger.py --path "V:\Audio" --workers 1 --db audio_library.db</pre>
+    </div>
+    <div class="callout callout-tip">
+      <div class="callout-label">Easier way</div>
+      <p>For most users, double-clicking <strong>Scan Library.bat</strong> is simpler — it prompts for the path and handles everything automatically.</p>
+    </div>
+    <div class="code-block">
+      <div class="code-block-header"><span class="code-lang">advanced</span></div>
     </div>
 
     <table class="tag-table">
@@ -1008,8 +1047,8 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
       <tbody>
         <tr>
           <td class="tag-cat">NVIDIA GPU (CUDA)</td>
-          <td class="tag-examples">1–3 seconds</td>
-          <td class="tag-desc">~3–8 hours</td>
+          <td class="tag-examples">1–2 seconds (tested on RTX 2070)</td>
+          <td class="tag-desc">~3–6 hours</td>
         </tr>
         <tr>
           <td class="tag-cat">CPU (single worker)</td>
@@ -1041,13 +1080,13 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
     <p>No. All analysis runs locally on your machine. The only internet access is the one-time download of the PANNs model (~400 MB) from Zenodo.org.</p>
 
     <h3>Can I search while the tagger is still running?</h3>
-    <p>Yes. Start <code>app.py</code> in a second terminal window and open <code>localhost:5000</code>. Files appear in search results as soon as they're tagged.</p>
+    <p>Yes. Double-click <strong>Start Audio Library Local Server.bat</strong> in a second window and open <code>localhost:5000</code>. Files appear in search results as soon as they're tagged.</p>
 
     <h3>How do I add more folders to the library?</h3>
-    <p>Run <code>tagger.py</code> again pointing at the new folder. Files are identified by a hash so there's no duplication — already-tagged files are skipped.</p>
+    <p>Double-click <strong>Scan Library.bat</strong> and enter the new folder path when prompted. Files are identified by a hash so there's no duplication — already-tagged files are skipped.</p>
 
     <h3>I see lots of errors for ._filename files</h3>
-    <p>These are Apple macOS metadata files created when zipping on a Mac. They're not real audio and can be safely ignored. They don't affect real file processing.</p>
+    <p>These are Apple macOS metadata stubs created when zipping on a Mac. From v1.0 onwards these are filtered out before scanning and will not appear in logs. If you see them, ensure you are running the latest version of <code>tagger.py</code>.</p>
 
     <h3>The PANNs model failed to load</h3>
     <p>On Windows, the <code>panns_inference</code> library sometimes tries to use <code>wget</code> which isn't available. Follow the manual model download steps in the <a href="#installation">Installation</a> section to pre-download the files using PowerShell's built-in <code>Invoke-WebRequest</code>.</p>
