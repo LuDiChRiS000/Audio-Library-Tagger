@@ -625,6 +625,7 @@ a:hover { text-decoration: underline; }
     <div class="nav-section-label">Usage</div>
     <a href="#scanning"      class="nav-link">Scanning Your Library</a>
     <a href="#searching"     class="nav-link">Searching & Filtering</a>
+    <a href="#negative-search" class="nav-link">Negative Search</a>
     <a href="#tags"          class="nav-link">Tag Reference</a>
     <a href="#playback"      class="nav-link">Audio Playback</a>
   </div>
@@ -927,6 +928,20 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
     <h3>Text search</h3>
     <p>The search bar performs full-text search across filenames and all AI-generated tags. Try terms like <code>explosion</code>, <code>piano</code>, <code>dark ambient</code>, <code>one-shot</code>, or <code>fast</code>.</p>
 
+    <h3>Negative search</h3>
+    <p>Prefix any keyword with a <code>-</code> minus symbol to exclude results containing that tag. This is useful when a broad search returns unwanted categories alongside your target sounds.</p>
+    <div class="code-block">
+      <div class="code-block-header"><span class="code-lang">Examples</span></div>
+      <pre>squeal -animal          → metal squeals only, no animal sounds
+impact -music           → impact SFX with no musical results
+explosion -small        → large explosions only
+rain -music -ambient    → rain SFX excluding music and atmosphere tracks</pre>
+    </div>
+    <div class="callout callout-tip">
+      <div class="callout-label">Tip</div>
+      <p>Negative terms work across filenames and all AI tags — not just categories. Use <code>-animal</code>, <code>-piano</code>, <code>-loop</code> or any tag value you want to remove from results.</p>
+    </div>
+
     <h3>Sidebar filters</h3>
     <p>Click any filter in the sidebar to narrow results by category, type, tempo, energy, mood, or file format. Filters are additive — combine them freely.</p>
 
@@ -941,6 +956,8 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
       <li><strong>Play button</strong> — previews the file directly in the browser</li>
       <li><strong>Open folder</strong> — opens the file location in Explorer / Finder</li>
       <li><strong>Copy path</strong> — copies the full file path to clipboard</li>
+      <li><strong>⟳ Loop</strong> — toggles looping playback on/off. Turns green when active. Useful for testing whether a sound loops cleanly.</li>
+      <li><strong>Speed selector</strong> — adjusts playback rate (0.5×, 0.75×, 1×, 1.5×, 2×). Useful for checking fast one-shots in slow motion or auditioning loops at different tempos.</li>
     </ul>
 
     <div class="screenshot">
@@ -952,6 +969,17 @@ Invoke-WebRequest -Uri "https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.43
         <img src="images/expanded-audio-player.png" alt="Expanded file card with audio player" style="width:100%; display:block;">
       </div>
       <div class="screenshot-caption">Clicking a file card expands it to reveal the audio player and action buttons.</div>
+    </div>
+
+    <div class="screenshot">
+      <div class="screenshot-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="screenshot-url">http://localhost:5000</span>
+      </div>
+      <div class="screenshot-body" style="aspect-ratio:auto; padding:0;">
+        <img src="images/main-interface-looping-button.png" alt="Loop and speed controls" style="width:100%; display:block;">
+      </div>
+      <div class="screenshot-caption">The Loop button turns green when active. The speed selector lets you audition sounds at 0.5×–2× speed.</div>
     </div>
   </div>
 
